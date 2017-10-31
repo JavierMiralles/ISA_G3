@@ -1,0 +1,10 @@
+Tareas:
+-API rest alumno --Diego
+-API rest profesor --Diego
+-API rest departamento --Kiri
+-API rest universidad (facultad, grados) consultar pdf telegram --Kiri
+-Implementacion en python de API profesor --ALberto, Javi
+-Implementacion en python de API alumno --David, Cristian
+
+-Implementar bbdd en python
+-Hacer una bbdd en no sql
