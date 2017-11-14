@@ -1,0 +1,277 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API de la Universidad de Villamayor",
+    "version": "1.0.0",
+    "title": "API de la Universidad de Villamayor"
+  },
+  "host": "localhost:8080",
+  "basePath": "/miAplicacion",
+  "tags": [
+    {
+      "name": "Alumnos",
+      "description": "Operaciones sobre los alumnos"
+    },
+    {
+      "name": "Profesores",
+      "description": "Operaciones sobre los profesores"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/alumnos": {
+      "get": {
+        "tags": [
+          "Alumnos"
+        ],
+        "summary": "Obtiene alumnos",
+        "description": "Obtiene un listado de alumnos del sistema.",
+        "operationId": "obtener_alumno",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tamanoPagina",
+            "in": "query",
+            "description": "Número de personas devueltas",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "numeroPaginas",
+            "in": "query",
+            "description": "Número de páginas devueltas",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Una lista de alumnos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Alumno"
+              }
+            }
+          }
+        },
+        "x-swagger-router-controller": "swagger_server.controllers.alumnos_controller"
+      }
+    },
+    "/alumno": {
+      "post": {
+        "tags": [
+          "Alumnos"
+        ],
+        "summary": "Crea un alumno",
+        "description": "Añade un usuario a la lista de alumnos.",
+        "operationId": "crear_alumno",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "alumno",
+            "description": "El alumno que se va a añadir.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Alumno"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Alumno creado correctamente."
+          },
+          "400": {
+            "description": "El alumno no ha podido ser creado."
+          }
+        },
+        "x-swagger-router-controller": "swagger_server.controllers.alumnos_controller"
+      }
+    },
+    "/alumno/{username}": {
+      "get": {
+        "tags": [
+          "Alumnos"
+        ],
+        "summary": "Devuelve un alumno",
+        "description": "Devuelve un único alumno identificado por su nombre de usuario",
+        "operationId": "alumno_username_get",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "Nombre de usuario del alumno",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación correcta",
+            "schema": {
+              "$ref": "#/definitions/Alumno"
+            }
+          },
+          "404": {
+            "description": "El alumno no existe."
+          }
+        },
+        "x-swagger-router-controller": "swagger_server.controllers.alumnos_controller"
+      }
+    },
+    "/profesores": {
+      "get": {
+        "tags": [
+          "Profesores"
+        ],
+        "summary": "Obtiene profesores",
+        "description": "Obtiene un listado de preofesores del sistema.",
+        "operationId": "obtener_profesor",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tamanoPagina",
+            "in": "query",
+            "description": "Número de personas devueltas",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "numeroPaginas",
+            "in": "query",
+            "description": "Número de páginas devueltas",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Una lista de profesores",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Profesor"
+              }
+            }
+          }
+        },
+        "x-swagger-router-controller": "swagger_server.controllers.profesores_controller"
+      }
+    },
+    "/profesor": {
+      "post": {
+        "tags": [
+          "Profesores"
+        ],
+        "summary": "Crea un profesor",
+        "description": "Añade un profesor a la lista de profesores.",
+        "operationId": "crear_profesor",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "profesor",
+            "description": "El profesor que se va a añadir.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Profesor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profesor creado correctamente."
+          },
+          "400": {
+            "description": "El profesor no ha podido ser creado."
+          }
+        },
+        "x-swagger-router-controller": "swagger_server.controllers.profesores_controller"
+      }
+    },
+    "/profesor/{username}": {
+      "get": {
+        "tags": [
+          "Profesores"
+        ],
+        "summary": "Devuelve un profesor",
+        "description": "Devuelve un único profesor identificado por su nombre de usuario",
+        "operationId": "profesor_username_get",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "Nombre de usuario del profesor",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación correcta",
+            "schema": {
+              "$ref": "#/definitions/Profesor"
+            }
+          },
+          "404": {
+            "description": "El profesor no existe."
+          }
+        },
+        "x-swagger-router-controller": "swagger_server.controllers.profesores_controller"
+      }
+    }
+  },
+  "definitions": {
+    "Alumno": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "Profesor": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
